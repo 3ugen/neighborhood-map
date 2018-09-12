@@ -5,14 +5,6 @@ import GoogleMapReact from "google-map-react";
 const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
 class Map extends Component {
-  static defaultProps = {
-    center: {
-      lat: 37.74,
-      lng: -122.44
-    },
-    zoom: 13
-  };
-
   renderMarkers(map, maps) {
     let marker = new maps.Marker({
       position: { lat: 37.721143, lng: -122.477629 },
