@@ -1,28 +1,73 @@
-.App {
-  text-align: center;
+/* #main {
+  width: 100%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  display: inline-block;
+} */
+
+#map-container {
+  height: 100vh;
+  /* position: relative */
+}
+#search-container {
+  padding: 10px 0 10px 10px;
+  background-color: white;
+  position: absolute;
+  top: 50px;
+  left: 10px;
+  /* z-index: 99; */
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+#search-input {
+  width: 65%;
+  height: 30px;
+  font-size: 1em;
+  border: 2px solid lightslategray;
+  border-radius: 5px;
+  padding-left: 10px;
+  margin-bottom: 10px;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+#search-results {
+  width: 99%;
+  height: 90%;
 }
 
-.App-title {
-  font-size: 1.5em;
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
 }
 
-.App-intro {
-  font-size: large;
+#search-results-list li {
+  padding: 0.2em;
+  text-align: left;
+  width: 90%;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+#search-results-list li:hover {
+  font-size: 1.3em;
+  background-color: lightgrey;
+}
+
+.search-items-address {
+  font-size: 0.8em;
+  background-color: lightgrey;
+}
+
+.info-window {
+  background: white;
+  border: 1px solid grey;
+  border-radius: 1px;
+  min-height: 60px;
+  line-height: 15px;
+  padding: 10px 10px 10px 10px;
+  text-align: left;
+  width: 130px;
+}
+
+.info-window-name {
+  text-decoration: underline;
+  font-weight: bold;
+  margin-bottom: 10px;
 }
