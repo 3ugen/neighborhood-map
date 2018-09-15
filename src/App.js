@@ -18,18 +18,25 @@ class App extends Component {
     menuToggle: false
   };
 
-  componentDidCatch(error, info) {
-    console.log(error);
+  gm_authFailure() {
     alert(
-      "Error Occured while trying to render google maps API Please check your credentials"
+      `Error occured with Google Maps. Check internet connection or your api key.`
     );
   }
+
   componentDidMount() {
+    window.gm_authFailure = this.gm_authFailure;
+
     function handleErrors(response) {
       if (response.ok) {
         throw Error(response.statusText);
       }
       return response;
+    }
+    function gm_authFailure() {
+      alert(
+        "Error occurred with FourSquare API. Locations data will not be displayed "
+      );
     }
     FoursquareAPI.getAllPlaces()
       .then(handleErrors)
