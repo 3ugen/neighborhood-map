@@ -3,7 +3,7 @@ import "./App.css";
 import MapContainer from "./components/MapContainer.js";
 import SearchContainer from "./components/SearchContainer.js";
 import * as FoursquareAPI from "./components/FoursquareAPI";
-
+import Error from "./components/Error";
 class App extends Component {
   state = {
     locations: [],
@@ -16,6 +16,12 @@ class App extends Component {
     query: ""
   };
 
+  componentDidCatch(error, info) {
+    console.log(error);
+    alert(
+      "Error Occured while trying to render google maps API Please check your credentials"
+    );
+  }
   componentDidMount() {
     function handleErrors(response) {
       if (response.ok) {
@@ -33,7 +39,7 @@ class App extends Component {
       })
       .catch(error => {
         alert(
-          "Sorry! Error occurred whilst loading data from FourSquare API. Locations data will not be displayed "
+          "Error occurred with FourSquare API. Locations data will not be displayed "
         );
       });
   }
@@ -78,37 +84,38 @@ class App extends Component {
   render() {
     return (
       <div id="main">
-        <MapContainer
-          selectedLocation={this.state.selectedLocation}
-          locations={this.state.locationsToUse}
-          locationsNotFound={this.state.locationsNotFound}
-          center={this.state.center}
-          zoom={this.state.zoom}
-          handleChildClickEvent={this.handleChildClickEvent}
-          isOpen={this.state.isOpen}
-          googleMapURL={`https://maps.googleapis.com/maps/api/js?key=AIzaSyDZlRxAX6jKbpkwaVWuLaPovMi_FnE4vm8&v=3.exp&libraries=geometry,drawing,places`}
-          loadingElement={<div style={{ height: `100%` }} />}
-          containerElement={
-            <div
-              id="map-container"
-              aria-label="map container"
-              tabIndex="0"
-              role="application"
-              style={{ height: `100vh` }}
-            />
-          }
-          mapElement={<div style={{ height: `100%` }} />}
-          resetMap={this.resetMap}
-        />
-
-        <SearchContainer
-          locations={this.state.locations}
-          locationsToUse={this.state.locationsToUse}
-          locationsNotFound={this.state.locationsNotFound}
-          handleChildClickEvent={this.handleChildClickEvent}
-          selectedLocation={this.state.selectedLocation}
-          onUserDidSearch={this.updateLocations}
-        />
+        <Error>
+          <MapContainer
+            selectedLocation={this.state.selectedLocation}
+            locations={this.state.locationsToUse}
+            locationsNotFound={this.state.locationsNotFound}
+            center={this.state.center}
+            zoom={this.state.zoom}
+            handleChildClickEvent={this.handleChildClickEvent}
+            isOpen={this.state.isOpen}
+            googleMapURL={`https://maps.googleapis.com/maps/api/js?key=AIzaSyDZlRxAX6jKbpkwaVWuLaPovMi_FnE4vm8&v=3.exp&libraries=geometry,drawing,places`}
+            loadingElement={<div style={{ height: `100%` }} />}
+            containerElement={
+              <div
+                id="map-container"
+                aria-label="map container"
+                tabIndex="0"
+                role="application"
+                style={{ height: `100vh` }}
+              />
+            }
+            mapElement={<div style={{ height: `100%` }} />}
+            resetMap={this.resetMap}
+          />
+          <SearchContainer
+            locations={this.state.locations}
+            locationsToUse={this.state.locationsToUse}
+            locationsNotFound={this.state.locationsNotFound}
+            handleChildClickEvent={this.handleChildClickEvent}
+            selectedLocation={this.state.selectedLocation}
+            onUserDidSearch={this.updateLocations}
+          />
+        </Error>
       </div>
     );
   }
