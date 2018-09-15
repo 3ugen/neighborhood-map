@@ -8,6 +8,7 @@
     "react-dom": "^16.4.2",
     "react-google-maps": "^9.4.5",
     "react-scripts": "1.1.4",
+    "react-sidebar": "^3.0.2",
     "sort-by": "^1.2.0"
   },
   "scripts": {

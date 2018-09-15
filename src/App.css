@@ -4,7 +4,12 @@
   padding-bottom: 10px;
   display: inline-block;
 } */
-
+.togle-menu {
+  color: red;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
 #map-container {
   height: 100vh;
   /* position: relative */

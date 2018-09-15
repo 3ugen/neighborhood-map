@@ -4,6 +4,7 @@ import MapContainer from "./components/MapContainer.js";
 import SearchContainer from "./components/SearchContainer.js";
 import * as FoursquareAPI from "./components/FoursquareAPI";
 import Error from "./components/Error";
+import ToggleMenu from "./components/ToggleMenu";
 class App extends Component {
   state = {
     locations: [],
@@ -13,7 +14,8 @@ class App extends Component {
     zoom: 13,
     isOpen: false,
     selectedLocation: {},
-    query: ""
+    query: "",
+    menuToggle: false
   };
 
   componentDidCatch(error, info) {
@@ -77,8 +79,11 @@ class App extends Component {
     });
   };
 
-  resetMap = () => {
-    console.log("testing testing");
+  menuToggle = () => {
+    this.setState(prevState => ({
+      menuToggle: !prevState.menuToggle
+    }));
+    console.log(this.state.menuToggle);
   };
 
   render() {
@@ -107,14 +112,18 @@ class App extends Component {
             mapElement={<div style={{ height: `100%` }} />}
             resetMap={this.resetMap}
           />
-          <SearchContainer
-            locations={this.state.locations}
-            locationsToUse={this.state.locationsToUse}
-            locationsNotFound={this.state.locationsNotFound}
-            handleChildClickEvent={this.handleChildClickEvent}
-            selectedLocation={this.state.selectedLocation}
-            onUserDidSearch={this.updateLocations}
-          />
+          <ToggleMenu onClick={this.menuToggle} />
+          {!this.state.menuToggle && (
+            <SearchContainer
+              hidden={this.state.menuToggle}
+              locations={this.state.locations}
+              locationsToUse={this.state.locationsToUse}
+              locationsNotFound={this.state.locationsNotFound}
+              handleChildClickEvent={this.handleChildClickEvent}
+              selectedLocation={this.state.selectedLocation}
+              onUserDidSearch={this.updateLocations}
+            />
+          )}
         </Error>
       </div>
     );
