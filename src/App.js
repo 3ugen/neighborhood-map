@@ -33,11 +33,7 @@ class App extends Component {
       }
       return response;
     }
-    function gm_authFailure() {
-      alert(
-        "Error occurred with FourSquare API. Locations data will not be displayed "
-      );
-    }
+
     FoursquareAPI.getAllPlaces()
       .then(handleErrors)
       .then(locations => {
