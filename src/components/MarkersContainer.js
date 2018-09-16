@@ -17,7 +17,7 @@ class MarkersContainer extends Component {
           }
         >
           {this.props.selectedLocation === this.props.checkId && (
-            <InfoWindow onCloseClick={this.props.resetMap}>
+            <InfoWindow>
               <div className="info-window">
                 <span className="info-window-name"> {this.props.name}</span>
                 <br />
