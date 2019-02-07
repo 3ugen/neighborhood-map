@@ -2,8 +2,10 @@
   "name": "google-map-tutorial",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://ebv-gh.github.io/neighborhood-map",
   "dependencies": {
     "escape-string-regexp": "^1.0.5",
+    "gh-pages": "^2.0.1",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
     "react-google-maps": "^9.4.5",
@@ -12,6 +14,8 @@
     "sort-by": "^1.2.0"
   },
   "scripts": {
+	"predeploy": "npm run build",
+	"deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
